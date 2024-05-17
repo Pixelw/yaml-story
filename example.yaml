@@ -1,0 +1,26 @@
+yaml-story: "1"
+
+# scene 1
+
+role:
+    - token: "t"
+      name: "123" 
+    - token: "d"
+      name: ""
+
+script:
+    - bg: "bg.png"
+      t: "same time with bg"
+    - t: "每个文档均以“---”三个横杠开始，如果一个文件中仅一个文档，则可省略。"
+    - t: "每个文档并不必须使用结束符“...”来表示结束，但是对于网络传输或者流来说，"
+    - t: "作为明确结束的符号，有利于软件处理。（例如，不需要知道流关闭就能知道文档结束）"
+    - select:
+        - "I go left":
+            - t: "Alex went left."
+            - t: "... and walk far away."
+
+        - "I go right":
+            - t: "Alex went right"
+            - t: "... can not go back right away."
+
+    - d: "我结束了"
