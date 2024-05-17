@@ -18,7 +18,7 @@ internal partial class YamlParser
             {
                 foreach (var role in roles)
                 {
-                    tokens.Add(role.Token);
+                    tokens.Add(role.token);
                 }
             }
 

@@ -20,7 +20,7 @@ internal partial class YamlParser
 
         var story = deserializer.Deserialize<Story>(yamlText);
 
-        return ParseDicts(story.script, story.GetRoleTokens());
+        return ParseDicts(story.script, story.GetRoleTokens(), story.roles);
 
     }
 
@@ -29,7 +29,7 @@ internal partial class YamlParser
     /**
      * Parse List<Dictionary<string, object>> into readable List<DialogBatch>
      */
-    private static List<DialogBatch> ParseDicts(List<Dictionary<string, object>> script, List<string> tokens)
+    private static List<DialogBatch> ParseDicts(List<Dictionary<string, object>> script, List<string> tokens, List<Role> roles)
     {
         var result = new List<DialogBatch>();
         foreach (var item in script)
@@ -66,7 +66,7 @@ internal partial class YamlParser
                             var option = new Option();
                             var kvp = dict.First(); // one option only allow one "name" key
                             option.name = kvp.Key.ToString();
-                            option.branchSeq = ParseDicts(ConvertList((List<object>)kvp.Value), tokens);
+                            option.branchSeq = ParseDicts(ConvertList((List<object>)kvp.Value), tokens, roles);
                             batch.options.Add(option);
                         }
                         break;
@@ -74,6 +74,7 @@ internal partial class YamlParser
                         if (tokens.Contains(action.Key))
                         {
                             batch.text = action.Value.ToString();
+                            batch.charaName = roles.Find(x => x.token == batch.text)?.name;
                         }
                         break;
                 }
