@@ -15,7 +15,6 @@ internal partial class YamlParser
     {
 
         var deserializer = new DeserializerBuilder()
-            .WithNamingConvention(CamelCaseNamingConvention.Instance)
             .Build();
 
         var story = deserializer.Deserialize<Story>(yamlText);
@@ -49,7 +48,7 @@ internal partial class YamlParser
                         batch.autoplay = Boolean.Parse(action.Value.ToString() ?? "false");
                         break;
                     case "visible":
-                        if(Boolean.Parse(action.Value.ToString() ?? "false"))
+                        if (Boolean.Parse(action.Value.ToString() ?? "false"))
                         {
                             batch.dialogVisibility = DialogBatch.VISIBILITY_VISIBLE;
                         }
@@ -57,6 +56,12 @@ internal partial class YamlParser
                         {
                             batch.dialogVisibility = DialogBatch.VISIBILITY_GONE;
                         }
+                        break;
+                    case "show":
+                        batch.dialogVisibility = DialogBatch.VISIBILITY_VISIBLE;
+                        break;
+                    case "hide":
+                        batch.dialogVisibility= DialogBatch.VISIBILITY_GONE;
                         break;
                     case "select":
                         batch.options = [];
@@ -69,6 +74,12 @@ internal partial class YamlParser
                             option.branchSeq = ParseDicts(ConvertList((List<object>)kvp.Value), tokens, roles);
                             batch.options.Add(option);
                         }
+                        break;
+                    case "trigger":
+                        batch.trigger = action.Value.ToString();
+                        break;
+                    case "facial":
+                        batch.facial = action.Value.ToString();
                         break;
                     default:
                         if (tokens.Contains(action.Key))

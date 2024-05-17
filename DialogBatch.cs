@@ -21,6 +21,10 @@
 
         public List<Option>? options = null;
 
+        public string? trigger = null;
+
+        public string? facial = null;
+
         public class Option
         {
             public string name = "";

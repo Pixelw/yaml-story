@@ -11,6 +11,9 @@ internal partial class YamlParser
 
         [YamlMember(Alias = "name", ApplyNamingConventions = false)]
         public string name = "";
+
+        [YamlMember(Alias = "avatar", ApplyNamingConventions = false)]
+        public string? avatar = null;
     }
 
 }
