@@ -1,8 +1,10 @@
-﻿namespace yaml_story
+﻿using System.Collections.Generic;
+
+namespace YamlStory
 {
+    #nullable enable
     public class DialogBatch
     {
-
         public static readonly int VISIBILITY_UNSET = -1;
         public static readonly int VISIBILITY_VISIBLE = 1;
         public static readonly int VISIBILITY_GONE = 0;
@@ -29,7 +31,7 @@
         {
             public string name = "";
 
-            public List<DialogBatch> branchSeq = [];
+            public List<DialogBatch> branchSeq = new List<DialogBatch>();
 
             public override string ToString()
             {
@@ -58,5 +60,6 @@
             }
             return str + "\n\n\n";
         }
+
     }
 }

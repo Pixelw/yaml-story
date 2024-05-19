@@ -1,9 +1,8 @@
 ﻿using YamlDotNet.Serialization;
 
-namespace YamlStory;
-
-internal partial class YamlParser
+namespace YamlStory
 {
+#nullable enable
     public class Role
     {
         [YamlMember(Alias = "token", ApplyNamingConventions = false)]
@@ -14,6 +13,6 @@ internal partial class YamlParser
 
         [YamlMember(Alias = "avatar", ApplyNamingConventions = false)]
         public string? avatar = null;
-    }
 
+    }
 }

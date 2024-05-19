@@ -1,8 +1,9 @@
-﻿using YamlStory;
+﻿using System;
+using System.IO;
 
-namespace yaml_story
+namespace YamlStory
 {
-    internal class Test
+    internal class YamlStoryTest
     {
         static void Main(string[] args)
         {

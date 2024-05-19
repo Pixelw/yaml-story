@@ -1,7 +1,9 @@
-﻿using YamlDotNet.Serialization;
-namespace YamlStory;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using YamlDotNet.Serialization;
 
-internal partial class YamlParser
+namespace YamlStory
 {
     public class Story
     {
@@ -9,8 +11,8 @@ internal partial class YamlParser
         public string yamlStory = "";
 
         [YamlMember(Alias = "role", ApplyNamingConventions = false)]
-        public List<Role> roles = [];
-        private readonly List<string> tokens = [];
+        public List<Role> roles = new List<Role>();
+        private readonly List<string> tokens = new List<string>();
 
         public List<string> GetRoleTokens()
         {
@@ -26,11 +28,7 @@ internal partial class YamlParser
         }
 
         [YamlMember(Alias = "script", ApplyNamingConventions = false)]
-        public List<Dictionary<string, object>> script = [];
+        public List<Dictionary<string, object>> script = new List<Dictionary<string, object>>();
     }
-
-
-
-
 
 }
